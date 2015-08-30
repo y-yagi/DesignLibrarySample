@@ -1,5 +1,6 @@
 package com.example.yaginuma.designlibrarysample;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,18 +11,22 @@ import android.view.View;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    public MainActivity mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.mActivity = this;
         setContentView(R.layout.activity_main);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("tab 1"));
         tabLayout.addTab(tabLayout.newTab().setText("tab 2").setIcon(R.drawable.abc_tab_indicator_material));
         FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.floating_action);
+
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "FloationAction", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mActivity, EditActivity.class);
+                startActivity(intent);
             }
         });
     }
